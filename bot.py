@@ -11,7 +11,7 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 bot = telebot.TeleBot(BOT_TOKEN)
 ADMIN_ID = os.getenv("ADMIN_ID")
 
-with open('company_info.txt', 'r', encoding='utf-8') as file:
+with open('knowledge.txt', 'r', encoding='utf-8') as file:
     company_info = file.read().strip()
 
 ai_helper = AIHelper(company_info)
@@ -63,6 +63,17 @@ def send_welcome(message):
         reply_markup=buttons.get_main_keyboard(),
         parse_mode='HTML'
     )
+    
+@bot.message_handler(func=lambda m: m.text == "Консультация")
+def start_consultation(message):
+    consult_text = """Просто напиши сообщение в чат без '/' чтобы получить ответ на любой вопрос от нашего консультанта"""
+    
+    bot.send_message(
+        message.chat.id,
+        consult_text,
+        parse_mode='HTML',
+        reply_markup=buttons.get_main_keyboard()  # Возвращаем ту же клавиатуру
+    )    
 
 @bot.message_handler(func=lambda m: m.text == "Связаться со мной")
 def send_me(message):
