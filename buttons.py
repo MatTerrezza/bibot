@@ -8,9 +8,11 @@ def get_main_keyboard():
     btn_form = types.KeyboardButton("Оформить заказ через форму")
     btn_me = types.KeyboardButton("Связаться со мной")
     btn_service = types.KeyboardButton("Услуги")
+    btn_consult = types.KeyboardButton("Консультация")
     
     keyboard.add(btn_service)
     keyboard.add(btn_form, btn_me)
+    keyboard.add(btn_consult)
     return keyboard
 
 def get_inline_menu():
